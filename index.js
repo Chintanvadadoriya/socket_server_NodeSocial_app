@@ -1,6 +1,6 @@
 const io = require('socket.io')(8900, {
      cors: {
-          origin: "http://localhost:3000",
+          origin: "https://socialmidiaapi.onrender.com",
      }
 })
 
@@ -35,7 +35,7 @@ io.on("connection", (socket) => {
      socket.on("sendMessage", ({ senderId, receiverId, text }) => {
           const user = getUser(receiverId)
           console.log('user :>> ', user);
-          io.to(user.SocketId).emit("getMessage", {      
+          io.to(user?.SocketId).emit("getMessage", {      
                senderId, text
           })
      })
